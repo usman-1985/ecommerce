@@ -6,12 +6,12 @@ import TileComponent from "@/components/FormElements/TileComponent";
 import ComponentLevelLoader from "@/components/Loader/componentlevel";
 import Notification from "@/components/Notification";
 import { GlobalContext } from "@/context";
-import { addNewProduct, updateAProduct } from "@/services/product";
+import { addNewProduct, updateAProduct } from "@/app/services/product";
 import {
   AvailableSizes,
   adminAddProductformControls,
   firebaseConfig,
-  firebaseStroageURL,
+  firebaseStorageURL,
 } from "@/utils";
 import { initializeApp } from "firebase/app";
 import {
@@ -26,7 +26,7 @@ import { toast } from "react-toastify";
 import { resolve } from "styled-jsx/css";
 
 const app = initializeApp(firebaseConfig);
-const storage = getStorage(app, firebaseStroageURL);
+const storage = getStorage(app, firebaseStorageURL);
 
 const createUniqueFileName = (getFile) => {
   const timeStamp = Date.now();
@@ -43,7 +43,7 @@ async function helperForUPloadingImageToFirebase(file) {
   return new Promise((resolve, reject) => {
     uploadImage.on(
       "state_changed",
-      (snapshot) => {},
+      (snapshot) => { },
       (error) => {
         console.log(error);
         reject(error);
@@ -128,7 +128,7 @@ export default function AdminAddNewProduct() {
     if (res.success) {
       setComponentLevelLoader({ loading: false, id: "" });
       toast.success(res.message, {
-        position: "top-right",
+        position: toast.POSITION.TOP_RIGHT,
       });
 
       setFormData(initialFormData);
@@ -137,8 +137,9 @@ export default function AdminAddNewProduct() {
         router.push("/admin-view/all-products");
       }, 1000);
     } else {
+      
       toast.error(res.message, {
-        position: "top-right",
+        position:"top-left",
       });
       setComponentLevelLoader({ loading: false, id: "" });
       setFormData(initialFormData);

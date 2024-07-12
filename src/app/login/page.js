@@ -49,7 +49,7 @@ export default function Login() {
 
     if (res.success) {
       toast.success(res.message, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: "top-right",
       });
       setIsAuthUser(true);
       setUser(res?.finalData?.user);

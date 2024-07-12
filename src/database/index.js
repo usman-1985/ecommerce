@@ -6,8 +6,8 @@ const configOptions = {
 };
 
 const connectToDB = async () => {
-  const connectionUrl =
-    "mongodb+srv://usman1234:Ammara12@cluster0.zhzlmvj.mongodb.net/";
+  const connectionUrl = "mongodb+srv://usman1234:Ammara12@cluster0.zhzlmvj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
   mongoose
     .connect(connectionUrl, configOptions)
     .then(() => console.log("Ecommerce database connected successfully!"))
